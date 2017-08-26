@@ -26,8 +26,8 @@ var tech = [
 ]
 
 var uni = [
-    ['307', 'https://courses.cs.purdue.edu/cs30700:spring17:start'],
-    ['408', "https://www.cs.purdue.edu/homes/suresh/408-Spring2017/index.htm"],
+    ['348', 'https://www.cs.purdue.edu/homes/aref/Fall2017CS348/index.html'],
+    ['webassign', "https://www.webassign.net/purdue/login.html"],
     ['bb', 'https://mycourses.purdue.edu/'],
     ['unimail', 'https://outlook.office.com/'],
     ['mypurdue', 'https://wl.mypurdue.purdue.edu/'],
