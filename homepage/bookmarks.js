@@ -28,11 +28,7 @@ var tech = [
 ]
 
 var uni = [
-    ['bb', 'https://mycourses.purdue.edu/'],
-    ['unimail', 'https://outlook.office.com/'],
     ['mypurdue', 'https://wl.mypurdue.purdue.edu/'],
-    ['dining', 'https://dining.purdue.edu/menus'],
-    ['piazza', 'https://piazza.com/']
 ]
 
 var social = [
