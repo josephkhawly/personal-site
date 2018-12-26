@@ -10,31 +10,37 @@
 
 <!-- Google Analytics script. -->
 <script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-	ga('create', 'UA-46424338-1', 'josephkhawly.com');
-	ga('send', 'pageview');
+    ga('create', 'UA-46424338-1', 'josephkhawly.com');
+    ga('send', 'pageview');
 </script>
 
 
 <style>
-
-    @font-face{
+    @font-face {
         font-family: SF-UI-Display;
         src: url("fonts/SF-UI-Display-Ultralight.otf") format("opentype");
     }
 
-    @font-face{
+    @font-face {
         font-family: SF-UI-Text;
         src: url("fonts/SF-UI-Display-Thin.otf") format("opentype");
     }
 
-	body {
-		background-color: #343434;
-	}
+    body {
+        background-color: #343434;
+    }
 
     img {
         border-radius: 30px;
@@ -45,33 +51,41 @@
         width: 260px;
     }
 
-	a { text-decoration: none; }
-
-	a:link { color: #A7F8EC; }
-
-	a:visited { color: #7DBAB1; }
-
-	a:hover { color: #BDE0F8; }
-
-	h1 {
-		font-family: 'SF-UI-Display', sans-serif;
-		color: white;
-        text-align: center;
-		margin-bottom: 0px;
-		font-size: 50px;
-		font-weight: 100;
+    a {
+        text-decoration: none;
     }
 
-	.container {
-		font-family: 'SF-UI-Text', sans-serif;
-		font-weight: 200;
-		color: white;
-		position: relative;
-		width: 680px;
-		margin: 0 auto;
-		padding: 30px 0 80px;
-		font-size: 20px;
-	}
+    a:link {
+        color: #A7F8EC;
+    }
+
+    a:visited {
+        color: #7DBAB1;
+    }
+
+    a:hover {
+        color: #BDE0F8;
+    }
+
+    h1 {
+        font-family: 'SF-UI-Display', sans-serif;
+        color: white;
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: 50px;
+        font-weight: 100;
+    }
+
+    .container {
+        font-family: 'SF-UI-Text', sans-serif;
+        font-weight: 200;
+        color: white;
+        position: relative;
+        width: 680px;
+        margin: 0 auto;
+        padding: 30px 0 80px;
+        font-size: 20px;
+    }
 
     .btn {
         -moz-border-radius: 5px;
@@ -94,7 +108,7 @@
         background-color: rgb(255, 0, 0);
     }
 
-     #linkedin_btn {
+    #linkedin_btn {
         border: 1px solid #4DA4C3;
         color: #4DA4C3;
     }
@@ -114,16 +128,6 @@
         background-color: #8b59a2;
     }
 
-    #resume_btn {
-        border: 1px solid #c3a043;
-        color: #c3a043;
-    }
-
-    #resume_btn:hover {
-        color: white;
-        background-color: #c3a043;
-    }
-
     #medium_btn {
         border: 1px solid #3aa33a;
         color: #3aa33a;
@@ -133,23 +137,22 @@
         color: white;
         background-color: #3aa33a;
     }
-
 </style>
 
-	<body>
-		<div class="container">
+<body>
+    <div class="container">
 
-            <h1>Joseph Khawly</h1>
+        <h1>Joseph Khawly</h1>
 
-            <p>I'm a computer science major at Purdue University who has developed web, iOS, and C++ software.</p>
-            <p>I made <a href="http://apps.getpebble.com/en_US/application/54e9092777c5299b370000bf">Timefeld</a>, a Seinfeld-inspired Pebble watchface.</p>
-            <p>Check out my <a href="homepage/index.html"> browser startpage </a> that I made.</p>
+        <p>I'm a computer science graduate from Purdue University who has developed web, iOS, and C++ software.</p>
 
-            <a href="mailto:joseph.khawly@gmail.com" target="_blank" id="email_btn" class="btn">email</a>
-            <a href="https://www.linkedin.com/in/josephkhawly" target="_blank" id="linkedin_btn" class="btn">Linkedin</a>
-            <a href="https://github.com/josephkhawly" target="_blank" id="github_btn" class="btn">GitHub</a>
-            <a href="https://medium.com/@JosephKhawly" target="_blank" id="medium_btn" class="btn">Medium</a>
-            <a href="joseph_khawly_resume.pdf" target="_blank" id="resume_btn" class="btn">Resume</a>
-		</div>
-	</body>
+        <p>I'm currently looking for a full time software engineering position. You can find my resume <a href="joseph_khawly_resume.pdf"
+                target="_blank">here</a>.</p>
+
+        <a href="mailto:joseph.khawly@gmail.com" target="_blank" id="email_btn" class="btn">email</a>
+        <a href="https://www.linkedin.com/in/josephkhawly" target="_blank" id="linkedin_btn" class="btn">Linkedin</a>
+        <a href="https://github.com/josephkhawly" target="_blank" id="github_btn" class="btn">GitHub</a>
+    </div>
+</body>
+
 </html>
