@@ -13,14 +13,17 @@ var bookmarks = [
     ['inbox', 'https://inbox.google.com/'],
     ['cal', "https://calendar.google.com/"],
     ['drive', "https://drive.google.com/"],
+    ['amazon', 'https://amazon.com/'],
+    ['amazon-jp', 'https://amazon.co.jp/'],
+    ['trello', 'https://trello.com/'],
+]
+
+var media = [
     ['yt', 'https://youtube.com/feed/subscriptions'],
     ['netflix', 'https://netflix.com/'],
     ['plex', 'https://app.plex.tv'],
-    ['amazon', 'https://amazon.com/'],
-    ['amazon-jp', 'https://amazon.co.jp/'],
     ['music', 'https://play.google.com/music/listen?hl=en&u=0#/wmp'],
-    ['trello', 'https://trello.com/'],
-]
+];
 
 var tech = [
     ['github', 'http://github.com/'],
