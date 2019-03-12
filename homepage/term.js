@@ -189,10 +189,20 @@ function history(input) {
     for (var h = lastInputs.length - 1; h >= 0; h--) print(lastInputs[h]);
 }
 
+var printStr = '';
+
+function listItems(arr) {
+    printStr = '';
+    if (typeof arr != 'undefined' && arr.length > 0) {
+        for (var i = 0; i < arr.length; i++)
+            printStr += '> ' + arr[i][0] + ' ';
+    }
+    print(printStr);
+}
+
 function help(input) {
     //add some kind of help for various functions (like rendering)
     fancyRender('general', 'lightgray');
-    var printStr = '';
     for (var i = 0; i < terminalFunctions.length; i++) {
         printStr += '> ' + terminalFunctions[i] + ' ';
     }
@@ -207,32 +217,19 @@ function help(input) {
         print(printStr);
     }
 
-    printStr = '';
-    if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
-        fancyRender('bookmarks', 'lightgray');
-        for (var i = 0; i < bookmarks.length; i++) {
-            printStr += '> ' + bookmarks[i][0] + ' ';
-        }
-    }
-    print(printStr);
+    fancyRender('bookmarks', 'lightgray');
+    listItems(bookmarks);
 
-    printStr = '';
-    if (typeof uni != 'undefined' && uni.length > 0) {
-        fancyRender('uni', 'lightgray');
-        for (var i = 0; i < uni.length; i++) {
-            printStr += '> ' + uni[i][0] + ' ';
-        }
-    }
-    print(printStr);
+    fancyRender('media', 'lightgray');
+    listItems(media);
 
-    printStr = '';
-    if (typeof social != 'undefined' && social.length > 0) {
-        fancyRender('social', 'lightgray');
-        for (var i = 0; i < social.length; i++) {
-            printStr += '> ' + social[i][0] + ' ';
-        }
-    }
-    print(printStr);
+    fancyRender('tech', 'lightgray');
+    listItems(tech);
+
+    fancyRender('social', 'lightgray');
+    listItems(social);
+
+    // print("\n");
 
     printStr = '';
     if (typeof fileFunctions != 'undefined' && fileFunctions.length > 0) {
