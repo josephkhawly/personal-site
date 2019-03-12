@@ -1,5 +1,7 @@
 //initializing commands
-$(document).ready(function() {weather()});
+$(document).ready(function () {
+    weather()
+});
 
 //==================== CHALLENGE COMMANDS ==========================
 function name(str) {
@@ -11,7 +13,7 @@ function machine(str) {
 }
 
 function k_to_f(kelvin) {
-	return ((9 / 5) * (kelvin - 273) + 32).toFixed(0);
+    return ((9 / 5) * (kelvin - 273) + 32).toFixed(0);
 }
 
 function weather() {
@@ -27,24 +29,24 @@ function weather() {
 
     $.when(
         $.getJSON(json_url)
-    ).done(function(json_obj) {
-		city = json_obj["name"];
-		temp_curr = k_to_f(json_obj["main"]["temp"]);
-		temp_low = k_to_f(json_obj["main"]["temp_min"]);
-		temp_high = k_to_f(json_obj["main"]["temp_max"]);
-		description = json_obj.weather[0].description;
+    ).done(function (json_obj) {
+        city = json_obj["name"];
+        temp_curr = k_to_f(json_obj["main"]["temp"]);
+        temp_low = k_to_f(json_obj["main"]["temp_min"]);
+        temp_high = k_to_f(json_obj["main"]["temp_max"]);
+        description = json_obj.weather[0].description;
         weatherCode = Number(json_obj["weather"][0]["id"]);
         humidity = Number(json_obj["main"]["humidity"])
-        var disgusting = (weatherCode > 500
-            && weatherCode < 800
-            || Number(temp_low) < 30
-            || Number(temp_high) > 95
-            || humidity > 75);
+        var disgusting = (weatherCode > 500 &&
+            weatherCode < 800 ||
+            Number(temp_low) < 30 ||
+            Number(temp_high) > 95 ||
+            humidity > 75);
         description = description.charAt(0).toUpperCase() + description.slice(1)
         var weatherString = "It's " + temp_curr + "&deg; out. " + description + ". "
         disgusting ? weatherString += "Disgusting." : weatherString += "Not bad."
         print(weatherString)
-	})
+    })
 }
 
 function loadURL(url) {
@@ -69,18 +71,20 @@ function time(str) {
 }
 
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    if (i < 10) {
+        i = "0" + i
+    }; // add zero in front of numbers < 10
     return i;
 }
 
 function date(s) {
     var monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
     ];
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     var date = new Date();
     var day = date.getDate();

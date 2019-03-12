@@ -382,12 +382,12 @@ function autocomplete(string) {
 
 //====================  SEARCHING ==================================
 function searchString(query) {
-    var original = query;
+    // var original = query;
     var modifier = query.substr(query.length - 2);
     query = query.slice(0, query.length - 3); //remove " -x"
     switch (modifier) {
         case "-a":
-            window.location = "http://www.smile.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=" +
+            window.location = "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=" +
                 query.replace(" ", "+");
             return true;
         case "-y":
