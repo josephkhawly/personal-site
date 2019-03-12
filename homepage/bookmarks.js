@@ -25,16 +25,12 @@ var bookmarks = [
 var tech = [
     ['github', 'http://github.com/'],
     ['speedtest', 'http://speedtest.net/'],
-]
-
-var uni = [
-    ['mypurdue', 'https://wl.mypurdue.purdue.edu/'],
+    ['leetcode', 'https://leetcode.com/'],
+    ['mdn', 'https://developer.mozilla.org/en-US/'],
 ]
 
 var social = [
-    ['fb', 'https://facebook.com/'],
     ['twitter', "https://twitter.com/"],
     ['linkedin', 'https://linkedin.com/in/josephkhawly'],
     ['groupme', 'https://app.groupme.com/'],
-    ['messenger', 'https://messenger.com/'],
 ]
