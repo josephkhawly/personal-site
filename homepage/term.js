@@ -1,8 +1,8 @@
-$("#terminal").click(function() {
+$("#terminal").click(function () {
     if (!editing) $("#input").focus();
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     init()
 })
 
@@ -10,54 +10,47 @@ var userName;
 var userMachine;
 
 function getName() {
-    if (!localStorage.getItem('userName')) userName = "guest"
-    else userName = localStorage.getItem('userName')
-    
-    return userName;
+    return !localStorage.getItem('userName') ? "guest" :
+        localStorage.getItem('userName')
 }
 
 function setName(name) {
-    if(name == "") {
+    if (name == "") {
         print("usage: name [newname]")
         return;
     }
     localStorage.setItem("userName", name)
     userName = name
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() +':$&nbsp;'
+    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;'
     print("Set userName to " + userName + ".")
 }
 
 function getMachine() {
-    if (!localStorage.getItem('userMachine')) {
-        userMachine = "start"
-    } else {
-        userMachine = localStorage.getItem('userMachine')
-    }
-    return userMachine;
+    return !localStorage.getItem('userMachine') ? "start" : localStorage.getItem('userMachine');
 }
 
 function setMachine(str) {
-    if(str == "") {
+    if (str == "") {
         print("usage: machine [newname]")
         return;
     }
     localStorage.setItem("userMachine", str)
     userMachine = str
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() +':$&nbsp;'
+    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;'
     print("Set userMachine to " + userMachine + ".")
 }
 
 function init() {
     input = document.getElementById("input");
-    input.addEventListener("keydown", function(a){
+    input.addEventListener("keydown", function (a) {
         var key = a.keyCode;
-        if(key == 13){ //enter
+        if (key == 13) { //enter
             a.preventDefault();
             handle(input.value);
             inputIndex = 0;
         } else if (key === 38) { //up arrow
             document.getElementById("input").innerHTML = lastInputs[inputIndex];
-            inputIndex < lastInputs.length-1 ? inputIndex++ : true;
+            inputIndex < lastInputs.length - 1 ? inputIndex++ : true;
         } else if (key === 40) { //down arrow
             inputIndex > 0 ? inputIndex-- : true;
             if (inputIndex > 0) {
@@ -68,7 +61,7 @@ function init() {
             }
 
         } else if (key === 9) { //tab
-            if(!editing) {
+            if (!editing) {
                 a.preventDefault();
                 autocomplete(document.getElementById("input").innerHTML);
             }
@@ -76,7 +69,7 @@ function init() {
     });
     getName();
     getMachine();
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() +':$&nbsp;'
+    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;'
     $("#input").focus();
 }
 
@@ -91,7 +84,7 @@ function handle(text) {
 
     //intercepting the function here to search
     if (searchString(input)) {
-        print("Searching for " + input.slice(0, input.length-3) + "...")
+        print("Searching for " + input.slice(0, input.length - 3) + "...")
         return
     }
 
@@ -115,7 +108,7 @@ function handle(text) {
 }
 
 function appendLastInput(text) {
-    var inputBlobPre = '<p class="prompt">' + getName() + '@' + getMachine() +':$&nbsp;</p><pre class="input-old">'
+    var inputBlobPre = '<p class="prompt">' + getName() + '@' + getMachine() + ':$&nbsp;</p><pre class="input-old">'
     var inputBlobSuf = '</pre></br>'
     $(inputBlobPre + text + inputBlobSuf).insertBefore("#prompt");
 }
@@ -165,7 +158,8 @@ var terminalFunctions = [
     "machine",
     "re",
     "render",
-    'search'];
+    'search'
+];
 
 function clear(input) {
     var data = '<p id="prompt" class="prompt">' + getName() + '@' + getMachine() + ':$&nbsp;</p><pre id="input" contenteditable="true" autofocus="true" spellcheck="false"></pre>'
@@ -179,23 +173,23 @@ function about(input) {
 
 function history(input) {
     //print in descending order, without printing the history command
-    for (var h=lastInputs.length-1; h>=0; h--) print(lastInputs[h]);
+    for (var h = lastInputs.length - 1; h >= 0; h--) print(lastInputs[h]);
 }
 
 function help(input) {
     //add some kind of help for various functions (like rendering)
     fancyRender("general", "lightgray")
     var printStr = ""
-    for (var i=0; i<terminalFunctions.length; i++) {
-        printStr +=  "> " +(terminalFunctions[i]) + " ";
+    for (var i = 0; i < terminalFunctions.length; i++) {
+        printStr += "> " + (terminalFunctions[i]) + " ";
     }
     print(printStr)
 
     fancyRender("commands", "lightgray")
     printStr = ""
-        if (typeof hookCommands != "undefined" && hookCommands.length > 0) {
-        for (var i=0; i<hookCommands.length; i++) {
-            printStr +=  "> " +(hookCommands[i]) + " ";
+    if (typeof hookCommands != "undefined" && hookCommands.length > 0) {
+        for (var i = 0; i < hookCommands.length; i++) {
+            printStr += "> " + (hookCommands[i]) + " ";
         }
         print(printStr)
     }
@@ -203,8 +197,8 @@ function help(input) {
     printStr = ""
     if (typeof bookmarks != "undefined" && bookmarks.length > 0) {
         fancyRender("bookmarks", "lightgray")
-        for (var i=0; i<bookmarks.length; i++) {
-            printStr +=  "> " +(bookmarks[i][0]) + " ";
+        for (var i = 0; i < bookmarks.length; i++) {
+            printStr += "> " + (bookmarks[i][0]) + " ";
         }
     }
     print(printStr)
@@ -212,8 +206,8 @@ function help(input) {
     printStr = ""
     if (typeof uni != "undefined" && uni.length > 0) {
         fancyRender("uni", "lightgray")
-        for (var i=0; i<uni.length; i++) {
-            printStr +=  "> " +(uni[i][0]) + " ";
+        for (var i = 0; i < uni.length; i++) {
+            printStr += "> " + (uni[i][0]) + " ";
         }
     }
     print(printStr)
@@ -221,8 +215,8 @@ function help(input) {
     printStr = ""
     if (typeof social != "undefined" && social.length > 0) {
         fancyRender("social", "lightgray")
-        for (var i=0; i<social.length; i++) {
-            printStr +=  "> " +(social[i][0]) + " ";
+        for (var i = 0; i < social.length; i++) {
+            printStr += "> " + (social[i][0]) + " ";
         }
     }
     print(printStr)
@@ -230,8 +224,8 @@ function help(input) {
     printStr = ""
     if (typeof fileFunctions != "undefined" && fileFunctions.length > 0) {
         fancyRender("i/o", "lightgray")
-        for (var i=0; i<fileFunctions.length; i++) {
-            printStr +=  "> " +(fileFunctions[i]) + " ";
+        for (var i = 0; i < fileFunctions.length; i++) {
+            printStr += "> " + (fileFunctions[i]) + " ";
         }
     }
     print(printStr)
@@ -239,8 +233,8 @@ function help(input) {
     printStr = ""
     if (!$.isEmptyObject(files)) {
         fancyRender("files", "lightgray")
-        for(var prop in files) {
-            printStr +=  "> " +(prop) + " "
+        for (var prop in files) {
+            printStr += "> " + (prop) + " "
         }
         print(printStr)
     }
@@ -248,19 +242,19 @@ function help(input) {
 
 function ls(input) {
     //horrible. converts input to a string by adding an empty string.
-    if(input.slice(input.length - 2, input.length) + "" === "-b") {
+    if (input.slice(input.length - 2, input.length) + "" === "-b") {
         fancyRender("bookmarks", "lightgray")
         if (typeof bookmarks != "undefined" && bookmarks.length > 0) {
-            for (var i=0; i<bookmarks.length; i++) {
+            for (var i = 0; i < bookmarks.length; i++) {
                 print(bookmarks[i][0]);
             }
         }
         return;
     }
-    if(input.slice(input.length - 2, input.length) + "" === "-c") {
+    if (input.slice(input.length - 2, input.length) + "" === "-c") {
         fancyRender("commands", "lightgray")
         if (typeof hookCommands != "undefined" && hookCommands.length > 0) {
-            for (var i=0; i<hookCommands.length; i++) {
+            for (var i = 0; i < hookCommands.length; i++) {
                 print(hookCommands[i]);
             }
         }
@@ -276,7 +270,7 @@ function echo(args) {
     }
     var printStr = args.join(" ")
     //greentexting
-    if(printStr.indexOf("&gt;") === 0) {
+    if (printStr.indexOf("&gt;") === 0) {
         printStr = cssColor(printStr, "#789922")
     }
     print(printStr);
@@ -328,7 +322,9 @@ function addInput(str) {
     if (str === "" || /^[ ]+$/.test(str)) {
         return;
     }
-    if (lastInputs[0] === str){return};
+    if (lastInputs[0] === str) {
+        return
+    };
     if (lastInputs.length > 0) {
         if (lastInputs[lastInputs.length - 1] != str) lastInputs.unshift(str)
     } else lastInputs.unshift(str);
@@ -338,15 +334,15 @@ function addInput(str) {
 //====================  TAB AUTO-COMPLETION ========================
 function autocomplete(string) {
     //first search term commands, then maybe hooked commands
-    for (var i=0; i<terminalFunctions.length; i++) {
+    for (var i = 0; i < terminalFunctions.length; i++) {
         if (terminalFunctions[i].indexOf(string) === 0) {
             document.getElementById("input").innerHTML = terminalFunctions[i];
             return
         }
     }
     //if hook commands exist
-    if (typeof hookCommands != "undefined" && hookCommands.length > 0   ) {
-        for (var i=0; i<hookCommands.length; i++) {
+    if (typeof hookCommands != "undefined" && hookCommands.length > 0) {
+        for (var i = 0; i < hookCommands.length; i++) {
             if (hookCommands[i].indexOf(string) === 0) {
                 document.getElementById("input").innerHTML = hookCommands[i];
                 return
@@ -354,45 +350,45 @@ function autocomplete(string) {
         }
     }
     if (typeof bookmarks != "undefined" && bookmarks.length > 0) {
-        for (var i=0; i<bookmarks.length; i++) {
-            if(bookmarks[i][0].indexOf(string) === 0) {
+        for (var i = 0; i < bookmarks.length; i++) {
+            if (bookmarks[i][0].indexOf(string) === 0) {
                 document.getElementById("input").innerHTML = bookmarks[i][0];
                 return
             }
         }
     }
-    if (typeof fileFunctions != "undefined" && fileFunctions.length > 0   ) {
-        for (var i=0; i<fileFunctions.length; i++) {
+    if (typeof fileFunctions != "undefined" && fileFunctions.length > 0) {
+        for (var i = 0; i < fileFunctions.length; i++) {
             if (fileFunctions[i].indexOf(string) === 0) {
                 document.getElementById("input").innerHTML = fileFunctions[i];
                 return
             }
         }
     }
-	//autocompleting based on filenames
+    //autocompleting based on filenames
     console.log(string)
-	var tempCommand = string.split(" ")[0];
-	if (fileFunctions.indexOf(tempCommand) >= 0
-			&& string.split(" ").length > 1) {
-		var beginName = string.split(" ")[1];
-		Object.keys(files).forEach(function(key, index) {
-			if (key.indexOf(beginName) === 0)	{
+    var tempCommand = string.split(" ")[0];
+    if (fileFunctions.indexOf(tempCommand) >= 0 &&
+        string.split(" ").length > 1) {
+        var beginName = string.split(" ")[1];
+        Object.keys(files).forEach(function (key, index) {
+            if (key.indexOf(beginName) === 0) {
                 document.getElementById("input").innerHTML = tempCommand + " " + key
                 return
             }
-		})
-	}
+        })
+    }
 }
 
 //====================  SEARCHING ==================================
 function searchString(query) {
     var original = query;
-    var modifier = query.substr(query.length-2);
-    query = query.slice(0, query.length-3); //remove " -x"
+    var modifier = query.substr(query.length - 2);
+    query = query.slice(0, query.length - 3); //remove " -x"
     switch (modifier) {
         case "-a":
             window.location = "http://www.smile.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=" +
-            query.replace(" ", "+");
+                query.replace(" ", "+");
             return true;
         case "-y":
             window.location =
@@ -404,15 +400,15 @@ function searchString(query) {
                 "https://en.wikipedia.org/w/index.php?search=" +
                 query.replace(" ", "%20");
             return true;
-    	case "-m":
-    	    window.location =
-    		"http://www.wolframalpha.com/input/?i=" +
-    		query.replace("+", "%2B");
+        case "-m":
+            window.location =
+                "http://www.wolframalpha.com/input/?i=" +
+                query.replace("+", "%2B");
             return true;
         case "-v":
             window.location =
-            "https://vimeo.com/search?q=" +
-            query.replace(" ", "+");
+                "https://vimeo.com/search?q=" +
+                query.replace(" ", "+");
             return true;
     }
     return false;
@@ -420,7 +416,7 @@ function searchString(query) {
 
 //====================  HELPER FUNCTIONS  ==========================
 function randRange(n) {
-  return Math.ceil(Math.random() * n);
+    return Math.ceil(Math.random() * n);
 }
 
 function rollDie(args) {
