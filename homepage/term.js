@@ -191,54 +191,48 @@ function history(input) {
 
 var printStr = '';
 
-function listItems(arr) {
+function listCommands(arr) {
     printStr = '';
-    if (typeof arr != 'undefined' && arr.length > 0) {
+    if (typeof arr != 'undefined' && arr.length > 0)
+        for (var i = 0; i < arr.length; i++)
+            printStr += '> ' + arr[i] + ' ';
+
+    print(printStr);
+}
+
+function listBookmarks(arr) {
+    printStr = '';
+    if (typeof arr != 'undefined' && arr.length > 0)
         for (var i = 0; i < arr.length; i++)
             printStr += '> ' + arr[i][0] + ' ';
-    }
+    
     print(printStr);
 }
 
 function help(input) {
     //add some kind of help for various functions (like rendering)
     fancyRender('general', 'lightgray');
-    for (var i = 0; i < terminalFunctions.length; i++) {
-        printStr += '> ' + terminalFunctions[i] + ' ';
-    }
-    print(printStr);
+    listCommands(terminalFunctions);
 
     fancyRender('commands', 'lightgray');
-    printStr = '';
-    if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
-        for (var i = 0; i < hookCommands.length; i++) {
-            printStr += '> ' + hookCommands[i] + ' ';
-        }
-        print(printStr);
-    }
+    listCommands(hookCommands);
 
     fancyRender('bookmarks', 'lightgray');
-    listItems(bookmarks);
+    listBookmarks(bookmarks);
 
     fancyRender('media', 'lightgray');
-    listItems(media);
+    listBookmarks(media);
 
     fancyRender('tech', 'lightgray');
-    listItems(tech);
+    listBookmarks(tech);
 
     fancyRender('social', 'lightgray');
-    listItems(social);
+    listBookmarks(social);
 
     // print("\n");
 
-    printStr = '';
-    if (typeof fileFunctions != 'undefined' && fileFunctions.length > 0) {
-        fancyRender('i/o', 'lightgray');
-        for (var i = 0; i < fileFunctions.length; i++) {
-            printStr += '> ' + fileFunctions[i] + ' ';
-        }
-    }
-    print(printStr);
+    fancyRender('i/o', 'lightgray');
+    listCommands(fileFunctions);
 
     printStr = '';
     if (!$.isEmptyObject(files)) {
