@@ -11,12 +11,12 @@ const hookCommands = [
 
 const bookmarks = [
     ['inbox', 'https://inbox.google.com/'],
-    ['cal', "https://calendar.google.com/"],
-    ['drive', "https://drive.google.com/"],
+    ['cal', 'https://calendar.google.com/'],
+    ['drive', 'https://drive.google.com/'],
     ['amazon', 'https://amazon.com/'],
     ['amazon-jp', 'https://amazon.co.jp/'],
     ['trello', 'https://trello.com/'],
-]
+];
 
 const media = [
     ['yt', 'https://youtube.com/feed/subscriptions'],
@@ -30,20 +30,20 @@ const tech = [
     ['speedtest', 'http://speedtest.net/'],
     ['leetcode', 'https://leetcode.com/'],
     ['mdn', 'https://developer.mozilla.org/en-US/'],
-]
+];
 
 const social = [
-    ['twitter', "https://twitter.com/"],
+    ['twitter', 'https://twitter.com/'],
     ['linkedin', 'https://linkedin.com/in/josephkhawly'],
     ['groupme', 'https://app.groupme.com/'],
-]
+];
 
 // new model for adding bookmarks
 const b = {
     'general': {
         'inbox': 'https://inbox.google.com/',
-        'cal': "https://calendar.google.com/",
-        'drive': "https://drive.google.com/",
+        'cal': 'https://calendar.google.com/',
+        'drive': 'https://drive.google.com/',
         'amazon': 'https://amazon.com/',
         'amazon-jp': 'https://amazon.co.jp/',
         'trello': 'https://trello.com/',
@@ -63,7 +63,7 @@ const b = {
     },
 
     'social': {
-        'twitter': "https://twitter.com/",
+        'twitter': 'https://twitter.com/',
         'linkedin': 'https://linkedin.com/in/josephkhawly',
     }
-}
+};

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 $('#terminal').click(function () {
     if (!editing) $('#input').focus();
 });
@@ -107,7 +108,7 @@ function handle(text) {
     } else {
         //outside programs just need to have this function
         if (hook(input.split(' ')[0], args) != true) {
-            print('Command ' + "'" + input + "' not found. Type 'ls' for all commands.");
+            print('Command ' + '\'' + input + '\' not found. Type \'ls\' for all commands.');
         }
     }
 
@@ -194,7 +195,7 @@ function listCommands(arr) {
     if (typeof arr != 'undefined' && arr.length > 0) print(`> ${arr.join(' > ')}`);
 }
 
-function help(input) {
+function help() {
     //add some kind of help for various functions (like rendering)
     fancyRender('terminal', 'lightgray');
     listCommands(terminalFunctions);
@@ -242,7 +243,7 @@ function ls(input) {
         }
         return;
     }
-    help(input);
+    help();
 }
 
 function echo(args) {
@@ -258,7 +259,7 @@ function echo(args) {
     print(printStr);
 }
 
-function re(s) {
+function re() {
     location.reload();
 }
 
@@ -280,7 +281,7 @@ function render(args) {
     fancyRender(args[0], cssVars[0], cssVars[1]);
 }
 
-function search(s) {
+function search() {
     print('Usage: [query] -x');
     print('x is a switch for: ');
     print('a:   amazon');
@@ -345,11 +346,11 @@ function autocomplete(string) {
         }
     }
     //autocompleting based on filenames
-    console.log(string);
+    // console.log(string);
     var tempCommand = string.split(' ')[0];
     if (fileFunctions.indexOf(tempCommand) >= 0 && string.split(' ').length > 1) {
         var beginName = string.split(' ')[1];
-        Object.keys(files).forEach(function (key, index) {
+        Object.keys(files).forEach(function (key) {
             if (key.indexOf(beginName) === 0) {
                 document.getElementById('input').innerHTML = tempCommand + ' ' + key;
                 return;
@@ -393,5 +394,5 @@ function rollDie(args) {
 
 //returns a span with the color of a string, good for chaining with print()
 function cssColor(string, colorName) {
-    return "<span style='color:" + colorName + "'>" + string + '</span>';
+    return '<span style=\'color:' + colorName + '\'>' + string + '</span>';
 }

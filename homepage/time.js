@@ -12,31 +12,33 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('clock').innerHTML =
-    h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
+        h + ':' + m + ':' + s;
+    setTimeout(startTime, 500);
 }
+
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    if (i < 10) i = '0' + i;
+    // add zero in front of numbers < 10
     return i;
 }
 
 function startDate() {
-    var monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
+    const monthNames = [
+        'January', 'February', 'March',
+        'April', 'May', 'June', 'July',
+        'August', 'September', 'October',
+        'November', 'December'
     ];
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    var date = new Date();
-    var day = date.getDate();
-    var weekday = date.getDay();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
+    const date = new Date();
+    const day = date.getDate();
+    const weekday = date.getDay();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
 
-    //document.getElementById("date").innerHTML = days[weekday] + ", " + monthNames[monthIndex] + " " + day;
+    document.getElementById('date').innerHTML = days[weekday] + ', ' + monthNames[monthIndex] + ' ' + day + ', ' + year;
 }
 
-startTime()
-startDate()
+startTime();
+startDate();
