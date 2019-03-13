@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Place all bookmarks here
 // Format is ['<command>', '<URL>']
 const hookCommands = [

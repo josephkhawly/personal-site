@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 var editBlob = '<div id="editWrapper"><textarea id="editArea" rows="40" cols="80" spellcheck="false"></textarea></div>';
 var editing = false;
 var currentFileName = '';

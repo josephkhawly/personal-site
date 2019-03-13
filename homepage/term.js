@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 $('#terminal').click(function () {
     if (!editing) $('#input').focus();
