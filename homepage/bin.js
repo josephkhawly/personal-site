@@ -2,7 +2,8 @@
 /* eslint-disable no-unused-vars */
 //initializing commands
 $(document).ready(function () {
-    // weather()
+    // Disabled until fixed
+    // weather();
 });
 
 //==================== CHALLENGE COMMANDS ==========================
@@ -20,14 +21,14 @@ function k_to_f(kelvin) {
 
 function weather() {
     //this might throw a mixed content error, but running it from a local file works
-    var json_url = 'http://api.openweathermap.org/data/2.5/weather?q=Morningside+Heights,ny&appid=6e131a2916d5d45d8367b72a4675be0a';
-    var city;
-    var temp_curr;
-    var temp_low;
-    var temp_high;
-    var description;
-    var weatherCode;
-    var humidity;
+    let json_url = 'http://api.openweathermap.org/data/2.5/weather?q=Morningside+Heights,ny&appid=6e131a2916d5d45d8367b72a4675be0a';
+    let city;
+    let temp_curr;
+    let temp_low;
+    let temp_high;
+    let description;
+    let weatherCode;
+    let humidity;
 
     $.when(
         $.getJSON(json_url)
@@ -39,13 +40,13 @@ function weather() {
         description = json_obj.weather[0].description;
         weatherCode = Number(json_obj['weather'][0]['id']);
         humidity = Number(json_obj['main']['humidity']);
-        var disgusting = (weatherCode > 500 &&
+        let disgusting = (weatherCode > 500 &&
             weatherCode < 800 ||
             Number(temp_low) < 30 ||
             Number(temp_high) > 95 ||
             humidity > 75);
         description = description.charAt(0).toUpperCase() + description.slice(1);
-        var weatherString = 'It\'s ' + temp_curr + '&deg; out. ' + description + '. ';
+        let weatherString = 'It\'s ' + temp_curr + '&deg; out. ' + description + '. ';
         disgusting ? weatherString += 'Disgusting.' : weatherString += 'Not bad.';
         print(weatherString);
     });
@@ -57,42 +58,40 @@ function loadURL(url) {
 }
 
 function time(str) {
-    var today = new Date();
-    var h = today.getHours();
+    let today = new Date();
+    let h = today.getHours();
     //america
     if (h >= 13) {
         h -= 12;
     } else if (h < 1) {
         h += 12;
     }
-    var m = today.getMinutes();
-    var s = today.getSeconds();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
     print(h + ':' + m + ':' + s);
 }
 
 function checkTime(i) {
-    if (i < 10) {
-        i = '0' + i;
-    } // add zero in front of numbers < 10
-    return i;
+    // add zero in front of numbers < 10
+    return i < 10 ? i = '0' + i : i;
 }
 
-function date(s) {
-    var monthNames = [
+function date() {
+    let monthNames = [
         'January', 'February', 'March',
         'April', 'May', 'June', 'July',
         'August', 'September', 'October',
         'November', 'December'
     ];
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    var date = new Date();
-    var day = date.getDate();
-    var weekday = date.getDay();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
+    let date = new Date();
+    let day = date.getDate();
+    let weekday = date.getDay();
+    let monthIndex = date.getMonth();
+    let year = date.getFullYear();
 
     print(days[weekday] + ', ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 }
@@ -103,8 +102,4 @@ function reddit(s) {
 
 function chan(s) {
     print('Usage: /[board] or /[board]/');
-}
-
-function dice(s) {
-    print('Usage: [number]d[number]+[modifier]');
 }

@@ -4,7 +4,6 @@
 const hookCommands = [
     'chan',
     'date',
-    'dice',
     'reddit',
     'time',
     'weather',
