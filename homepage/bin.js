@@ -57,20 +57,23 @@ function loadURL(url) {
     window.location = url;
 }
 
-function time(str) {
+function timeString() {
     let today = new Date();
     let h = today.getHours();
     //america
-    if (h >= 13) {
-        h -= 12;
-    } else if (h < 1) {
-        h += 12;
-    }
+    if (h >= 13) h -= 12;
+    else if (h < 1) h += 12;
+
     let m = today.getMinutes();
     let s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    print(h + ':' + m + ':' + s);
+
+    return h + ':' + m + ':' + s;
+}
+
+function time() {
+    print(timeString());
 }
 
 function checkTime(i) {
@@ -78,22 +81,26 @@ function checkTime(i) {
     return i < 10 ? i = '0' + i : i;
 }
 
-function date() {
-    let monthNames = [
-        'January', 'February', 'March',
-        'April', 'May', 'June', 'July',
-        'August', 'September', 'October',
-        'November', 'December'
+function dateString() {
+    const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr',
+        'May', 'Jun', 'Jul', 'Aug',
+        'Sep', 'Oct', 'Nov', 'Dec'
     ];
-    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    let date = new Date();
-    let day = date.getDate();
-    let weekday = date.getDay();
-    let monthIndex = date.getMonth();
-    let year = date.getFullYear();
+    const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
-    print(days[weekday] + ', ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
+    const date = new Date();
+    const day = date.getDate();
+    const weekday = date.getDay();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    return days[weekday] + ' ' + monthNames[monthIndex] + ' ' + day + ', ' + year;
+}
+
+function date() {
+    print(dateString());
 }
 
 function reddit(s) {
