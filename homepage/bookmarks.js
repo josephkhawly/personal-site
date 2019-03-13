@@ -17,6 +17,7 @@ var bookmarks = [
     ['netflix', 'https://netflix.com/'],
     ['plex', 'https://app.plex.tv'],
     ['amazon', 'https://amazon.com/'],
+    ['amazon-jp', 'https://amazon.co.jp/'],
     ['music', 'https://play.google.com/music/listen?hl=en&u=0#/wmp'],
     ['trello', 'https://trello.com/'],
 ]
@@ -27,13 +28,7 @@ var tech = [
 ]
 
 var uni = [
-    ['352', 'https://tiarkrompf.github.io/cs352/'],
-    ['webassign', "https://www.webassign.net/purdue/login.html"],
-    ['bb', 'https://mycourses.purdue.edu/'],
-    ['unimail', 'https://outlook.office.com/'],
     ['mypurdue', 'https://wl.mypurdue.purdue.edu/'],
-    ['dining', 'https://dining.purdue.edu/menus'],
-    ['piazza', 'https://piazza.com/']
 ]
 
 var social = [

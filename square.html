@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Square</title>
+    <style type="text/css">
+        .square {
+            /* Size and color */
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            /* Center on the page */
+            margin: auto;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(90deg);
+            }
+        }
+
+        .animate {
+            animation: rotate 1s;
+        }
+    </style>
+    <script type="text/javascript">
+        // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Tips#Run_an_animation_again
+        function rotate() {
+            document.querySelector(".square").className = "square";
+            window.requestAnimationFrame(function (time) {
+                window.requestAnimationFrame(function (time) {
+                    document.querySelector(".square").className = "square animate";
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="square" onclick="rotate();"></div>
+</body>
+
+</html>
