@@ -1,6 +1,6 @@
 //initializing commands
 $(document).ready(function () {
-    weather()
+    // weather()
 });
 
 //==================== CHALLENGE COMMANDS ==========================

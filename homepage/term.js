@@ -153,7 +153,7 @@ function fancyRender(text, color, size) {
 }
 
 //====================  TERMINAL FUNCTIONS  ========================
-var terminalFunctions = [
+const terminalFunctions = [
     'about',
     'clear',
     'echo',
@@ -186,60 +186,38 @@ function about(input) {
 
 function history(input) {
     //print in descending order, without printing the history command
-    for (var h = lastInputs.length - 1; h >= 0; h--) print(lastInputs[h]);
+    for (let h = lastInputs.length - 1; h >= 0; h--) print(lastInputs[h]);
 }
 
-var printStr = '';
 
 function listCommands(arr) {
-    printStr = '';
-    if (typeof arr != 'undefined' && arr.length > 0)
-        for (var i = 0; i < arr.length; i++)
-            printStr += '> ' + arr[i] + ' ';
-
-    print(printStr);
-}
-
-function listBookmarks(arr) {
-    printStr = '';
-    if (typeof arr != 'undefined' && arr.length > 0)
-        for (var i = 0; i < arr.length; i++)
-            printStr += '> ' + arr[i][0] + ' ';
-    
-    print(printStr);
+    if (typeof arr != 'undefined' && arr.length > 0) print(`> ${arr.join(' > ')}`);
 }
 
 function help(input) {
     //add some kind of help for various functions (like rendering)
-    fancyRender('general', 'lightgray');
+    fancyRender('terminal', 'lightgray');
     listCommands(terminalFunctions);
 
-    fancyRender('commands', 'lightgray');
-    listCommands(hookCommands);
-
-    fancyRender('bookmarks', 'lightgray');
-    listBookmarks(bookmarks);
-
-    fancyRender('media', 'lightgray');
-    listBookmarks(media);
-
-    fancyRender('tech', 'lightgray');
-    listBookmarks(tech);
-
-    fancyRender('social', 'lightgray');
-    listBookmarks(social);
+    // show bookmark commands
+    var items = Object.keys(b);
+    for (let i = 0; i < items.length; i++) {
+        fancyRender(items[i], 'lightgray');
+        let k = Object.keys(b[items[i]]);
+        print(`> ${k.join(' > ')}`);
+    }
 
     // print("\n");
 
     fancyRender('i/o', 'lightgray');
     listCommands(fileFunctions);
 
-    printStr = '';
+    var printStr = '';
     if (!$.isEmptyObject(files)) {
         fancyRender('files', 'lightgray');
-        for (var prop in files) {
+        for (var prop in files)
             printStr += '> ' + prop + ' ';
-        }
+
         print(printStr);
     }
 }
@@ -249,7 +227,7 @@ function ls(input) {
     if (input.slice(input.length - 2, input.length) + '' === '-b') {
         fancyRender('bookmarks', 'lightgray');
         if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
-            for (var i = 0; i < bookmarks.length; i++) {
+            for (let i = 0; i < bookmarks.length; i++) {
                 print(bookmarks[i][0]);
             }
         }
@@ -258,7 +236,7 @@ function ls(input) {
     if (input.slice(input.length - 2, input.length) + '' === '-c') {
         fancyRender('commands', 'lightgray');
         if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
-            for (var i = 0; i < hookCommands.length; i++) {
+            for (let i = 0; i < hookCommands.length; i++) {
                 print(hookCommands[i]);
             }
         }
@@ -335,7 +313,7 @@ function addInput(str) {
 //====================  TAB AUTO-COMPLETION ========================
 function autocomplete(string) {
     //first search term commands, then maybe hooked commands
-    for (var i = 0; i < terminalFunctions.length; i++) {
+    for (let i = 0; i < terminalFunctions.length; i++) {
         if (terminalFunctions[i].indexOf(string) === 0) {
             document.getElementById('input').innerHTML = terminalFunctions[i];
             return;
@@ -343,7 +321,7 @@ function autocomplete(string) {
     }
     //if hook commands exist
     if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
-        for (var i = 0; i < hookCommands.length; i++) {
+        for (let i = 0; i < hookCommands.length; i++) {
             if (hookCommands[i].indexOf(string) === 0) {
                 document.getElementById('input').innerHTML = hookCommands[i];
                 return;
@@ -351,7 +329,7 @@ function autocomplete(string) {
         }
     }
     if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
-        for (var i = 0; i < bookmarks.length; i++) {
+        for (let i = 0; i < bookmarks.length; i++) {
             if (bookmarks[i][0].indexOf(string) === 0) {
                 document.getElementById('input').innerHTML = bookmarks[i][0];
                 return;
@@ -359,7 +337,7 @@ function autocomplete(string) {
         }
     }
     if (typeof fileFunctions != 'undefined' && fileFunctions.length > 0) {
-        for (var i = 0; i < fileFunctions.length; i++) {
+        for (let i = 0; i < fileFunctions.length; i++) {
             if (fileFunctions[i].indexOf(string) === 0) {
                 document.getElementById('input').innerHTML = fileFunctions[i];
                 return;
