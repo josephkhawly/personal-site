@@ -227,7 +227,13 @@ function help() {
 
 function ls(input) {
     //horrible. converts input to a string by adding an empty string.
-    if (input.slice(input.length - 2, input.length) + '' === '-b') {
+    input += '';
+    // Proposed fix: each flag is the first letter of a category
+    // use a regular expression to find flag and extract letter
+    let flag = input.match(/-[a-zA-Z]/g)[0];
+
+    // if it matches first letter of a category, print for that category
+    if (flag === '-b') {
         fancyRender('bookmarks', 'lightgray');
         if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
             for (let i = 0; i < bookmarks.length; i++) {
@@ -236,7 +242,7 @@ function ls(input) {
         }
         return;
     }
-    if (input.slice(input.length - 2, input.length) + '' === '-c') {
+    if (flag === '-c') {
         fancyRender('commands', 'lightgray');
         if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
             for (let i = 0; i < hookCommands.length; i++) {
@@ -386,14 +392,6 @@ function searchString(query) {
 }
 
 //====================  HELPER FUNCTIONS  ==========================
-function randRange(n) {
-    return Math.ceil(Math.random() * n);
-}
-
-function rollDie(args) {
-    print(randRange(Number(args.substr(1))));
-}
-
 //returns a span with the color of a string, good for chaining with print()
 function cssColor(string, colorName) {
     return '<span style=\'color:' + colorName + '\'>' + string + '</span>';

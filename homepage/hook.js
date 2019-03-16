@@ -28,9 +28,9 @@ function hook(str, args) {
     }
 
     //and now check for bookmarks
-    var items = Object.keys(b);
-    for (let i = 0; i < items.length; i++)
-        if (b[items[i]][str]) url = b[items[i]][str];
+    Object.keys(b).forEach(function (key) {
+        if (b[key][str]) url = b[key][str];
+    });
 
     const modifier = url.substring(url.length - 3);
 

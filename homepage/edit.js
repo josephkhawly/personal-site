@@ -4,7 +4,7 @@ var editBlob = '<div id="editWrapper"><textarea id="editArea" rows="40" cols="80
 var editing = false;
 var currentFileName = '';
 var files = {};
-var fileFunctions = [
+const fileFunctions = [
     'edit',
     'close',
     'save',

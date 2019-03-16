@@ -3,7 +3,7 @@
 //initializing commands
 $(document).ready(function () {
     // Disabled until fixed
-    // weather();
+    weather();
 });
 
 //==================== CHALLENGE COMMANDS ==========================
@@ -21,19 +21,16 @@ function k_to_f(kelvin) {
 
 function weather() {
     //this might throw a mixed content error, but running it from a local file works
-    let json_url = 'http://api.openweathermap.org/data/2.5/weather?q=Morningside+Heights,ny&appid=6e131a2916d5d45d8367b72a4675be0a';
-    let city;
-    let temp_curr;
-    let temp_low;
-    let temp_high;
-    let description;
-    let weatherCode;
-    let humidity;
+    const apiKey = '3cebe33a9c82f08978b6486c638bb249';
+    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=Houston,tx&APPID=${apiKey}`;
+
+    // let city;
+    let temp_curr, temp_low, temp_high, description, weatherCode, humidity;
 
     $.when(
         $.getJSON(json_url)
     ).done(function (json_obj) {
-        city = json_obj['name'];
+        // city = json_obj['name'];
         temp_curr = k_to_f(json_obj['main']['temp']);
         temp_low = k_to_f(json_obj['main']['temp_min']);
         temp_high = k_to_f(json_obj['main']['temp_max']);
