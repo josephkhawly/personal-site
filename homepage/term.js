@@ -228,29 +228,21 @@ function help() {
 function ls(input) {
     //horrible. converts input to a string by adding an empty string.
     input += '';
-    // Proposed fix: each flag is the first letter of a category
+
     // use a regular expression to find flag and extract letter
     let flag = input.match(/-[a-zA-Z]/g)[0];
 
     // if it matches first letter of a category, print for that category
-    if (flag === '-b') {
-        fancyRender('bookmarks', 'lightgray');
-        if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
-            for (let i = 0; i < bookmarks.length; i++) {
-                print(bookmarks[i][0]);
+    if (flag) {
+        Object.keys(b).forEach(e => {
+            if (flag[1] === e[0]) {
+                fancyRender(e, 'lightgray');
+                print(Object.keys(b[e]).join('\n'));
             }
-        }
+        });
         return;
     }
-    if (flag === '-c') {
-        fancyRender('commands', 'lightgray');
-        if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
-            for (let i = 0; i < hookCommands.length; i++) {
-                print(hookCommands[i]);
-            }
-        }
-        return;
-    }
+
     help();
 }
 
@@ -358,7 +350,7 @@ function autocomplete(string) {
     var tempCommand = string.split(' ')[0];
     if (fileFunctions.indexOf(tempCommand) >= 0 && string.split(' ').length > 1) {
         var beginName = string.split(' ')[1];
-        Object.keys(files).forEach(function (key) {
+        Object.keys(files).forEach(key => {
             if (key.indexOf(beginName) === 0) {
                 document.getElementById('input').innerHTML = tempCommand + ' ' + key;
                 return;
