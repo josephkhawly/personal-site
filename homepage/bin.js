@@ -21,7 +21,7 @@ function k_to_f(kelvin) {
 function weather() {
     //this might throw a mixed content error, but running it from a local file works
     const apiKey = '3cebe33a9c82f08978b6486c638bb249';
-    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=boulder&appid=${apiKey}`;
+    const json_url = `https://api.openweathermap.org/data/2.5/weather?q=boulder&appid=${apiKey}`;
 
     $.when(
         $.getJSON(json_url)
@@ -53,10 +53,8 @@ function timeString() {
     if (h >= 13) h -= 12;
     else if (h < 1) h += 12;
 
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
+    let m = checkTime(today.getMinutes());
+    let s = checkTime(today.getSeconds());
 
     return `${h}:${m}:${s}`;
 }
