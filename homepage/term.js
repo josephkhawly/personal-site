@@ -204,9 +204,9 @@ function help() {
 
     // show bookmark commands
     var items = Object.keys(b);
-    for (let i = 0; i < items.length; i++) {
-        fancyRender(items[i], 'lightgray');
-        let k = Object.keys(b[items[i]]);
+    for (let i of items) {
+        fancyRender(i, 'lightgray');
+        let k = Object.keys(b[i]);
         print(`> ${k.join(' > ')}`);
     }
 
@@ -311,24 +311,25 @@ function addInput(str) {
     localStorage.setItem('history', JSON.stringify(lastInputs));
 }
 
-//====================  TAB AUTO-COMPLETION ========================
-function autocomplete(string) {
-    //first search term commands, then maybe hooked commands
-    for (let i = 0; i < terminalFunctions.length; i++) {
-        if (terminalFunctions[i].indexOf(string) === 0) {
-            document.getElementById('input').innerHTML = terminalFunctions[i];
-            return;
-        }
-    }
-    //if hook commands exist
-    if (typeof hookCommands != 'undefined' && hookCommands.length > 0) {
-        for (let i = 0; i < hookCommands.length; i++) {
-            if (hookCommands[i].indexOf(string) === 0) {
-                document.getElementById('input').innerHTML = hookCommands[i];
+function searchAndComplete(array, string) {
+    if (typeof array != 'undefined' && array.length > 0) {
+        for (const h of array) {
+            if (h.indexOf(string) === 0) {
+                document.getElementById('input').innerHTML = h;
                 return;
             }
         }
     }
+}
+
+//====================  TAB AUTO-COMPLETION ========================
+function autocomplete(string) {
+    //first search term commands, then maybe hooked commands
+    searchAndComplete(terminalFunctions, string)
+
+    //if hook commands exist
+    searchAndComplete(hookCommands, string)
+
     if (typeof bookmarks != 'undefined' && bookmarks.length > 0) {
         for (let i = 0; i < bookmarks.length; i++) {
             if (bookmarks[i][0].indexOf(string) === 0) {
@@ -337,16 +338,10 @@ function autocomplete(string) {
             }
         }
     }
-    if (typeof fileFunctions != 'undefined' && fileFunctions.length > 0) {
-        for (let i = 0; i < fileFunctions.length; i++) {
-            if (fileFunctions[i].indexOf(string) === 0) {
-                document.getElementById('input').innerHTML = fileFunctions[i];
-                return;
-            }
-        }
-    }
+
+    searchAndComplete(fileFunctions, string)
+
     //autocompleting based on filenames
-    // console.log(string);
     var tempCommand = string.split(' ')[0];
     if (fileFunctions.indexOf(tempCommand) >= 0 && string.split(' ').length > 1) {
         var beginName = string.split(' ')[1];

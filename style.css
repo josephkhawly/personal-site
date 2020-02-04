@@ -67,6 +67,7 @@ h1 {
     font-weight: 200;
     font-size: 20px;
     font-family: "SF-UI-Text", sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn.email_btn {
@@ -74,7 +75,7 @@ h1 {
     color: rgb(255, 0, 0);
 }
 
-btn.email_btn:hover {
+.btn.email_btn:hover {
     color: white;
     background-color: rgb(255, 0, 0);
 }

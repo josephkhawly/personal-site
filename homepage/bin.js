@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 //initializing commands
 $(document).ready(function () {
-    // Disabled until fixed
     weather();
 });
 
@@ -22,29 +21,22 @@ function k_to_f(kelvin) {
 function weather() {
     //this might throw a mixed content error, but running it from a local file works
     const apiKey = '3cebe33a9c82f08978b6486c638bb249';
-    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=Houston,tx&APPID=${apiKey}`;
-
-    // let city;
-    let temp_curr, temp_low, temp_high, description, weatherCode, humidity;
+    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=boulder&appid=${apiKey}`;
 
     $.when(
         $.getJSON(json_url)
-    ).done(function (json_obj) {
-        // city = json_obj['name'];
-        temp_curr = k_to_f(json_obj['main']['temp']);
-        temp_low = k_to_f(json_obj['main']['temp_min']);
-        temp_high = k_to_f(json_obj['main']['temp_max']);
-        description = json_obj.weather[0].description;
-        weatherCode = Number(json_obj['weather'][0]['id']);
-        humidity = Number(json_obj['main']['humidity']);
-        let disgusting = (weatherCode > 500 &&
-            weatherCode < 800 ||
-            Number(temp_low) < 30 ||
-            Number(temp_high) > 95 ||
-            humidity > 75);
+    ).done(function (response) {
+        const city = response.name;
+        const temp_curr = k_to_f(response.main.temp);
+        const temp_low = k_to_f(response.main.temp_min);
+        const temp_high = k_to_f(response.main.temp_max);
+        const weatherCode = Number(response.weather[0]['id']);
+        const humidity = Number(response.main.humidity);
+        const disgusting = (weatherCode > 500 && weatherCode < 800 || temp_low < 30 || temp_high > 95 || humidity > 75);
+
+        let description = response.weather[0].description;
         description = description.charAt(0).toUpperCase() + description.slice(1);
-        let weatherString = 'It\'s ' + temp_curr + '&deg; out. ' + description + '. ';
-        disgusting ? weatherString += 'Disgusting.' : weatherString += 'Not bad.';
+        let weatherString = `It\'s ${temp_curr}&deg; in ${city}. ${description}. ${disgusting ? 'Disgusting.' : 'Not bad.'}`;
         print(weatherString);
     });
 }
@@ -66,7 +58,7 @@ function timeString() {
     m = checkTime(m);
     s = checkTime(s);
 
-    return h + ':' + m + ':' + s;
+    return `${h}:${m}:${s}`;
 }
 
 function time() {
