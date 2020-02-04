@@ -69,21 +69,7 @@ function checkTime(i) {
 }
 
 function dateString() {
-    const monthNames = [
-        'Jan', 'Feb', 'Mar', 'Apr',
-        'May', 'Jun', 'Jul', 'Aug',
-        'Sep', 'Oct', 'Nov', 'Dec'
-    ];
-
-    const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-    const date = new Date();
-    const day = date.getDate();
-    const weekday = date.getDay();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    return days[weekday] + ' ' + monthNames[monthIndex] + ' ' + day + ', ' + year;
+    return dayjs().format('ddd MMM DD, YYYY')
 }
 
 function date() {
