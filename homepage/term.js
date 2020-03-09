@@ -233,7 +233,7 @@ function ls(input) {
     let flag = input.match(/-[a-zA-Z]/g)[0];
 
     // if it matches first letter of a category, print for that category
-    if (flag) {
+    if (flag != null) {
         Object.keys(b).forEach(e => {
             if (flag[1] === e[0]) {
                 fancyRender(e, 'lightgray');

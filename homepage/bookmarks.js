@@ -62,6 +62,10 @@ const b = {
         'mdn': 'https://developer.mozilla.org/en-US/',
     },
 
+    'work': {
+
+    },
+
     'social': {
         'twitter': 'https://twitter.com/',
         'linkedin': 'https://linkedin.com/in/josephkhawly',

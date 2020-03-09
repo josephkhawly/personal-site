@@ -14,25 +14,19 @@ function machine(str) {
     setMachine(str);
 }
 
-function k_to_f(kelvin) {
-    return ((9 / 5) * (kelvin - 273) + 32).toFixed(0);
-}
-
 function weather() {
     //this might throw a mixed content error, but running it from a local file works
     const apiKey = '3cebe33a9c82f08978b6486c638bb249';
-    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=boulder&appid=${apiKey}`;
+    const json_url = `http://api.openweathermap.org/data/2.5/weather?q=boulder&units=imperial&appid=${apiKey}`;
 
     $.when(
         $.getJSON(json_url)
     ).done(function (response) {
         const city = response.name;
-        const temp_curr = k_to_f(response.main.temp);
-        const temp_low = k_to_f(response.main.temp_min);
-        const temp_high = k_to_f(response.main.temp_max);
-        const weatherCode = Number(response.weather[0]['id']);
-        const humidity = Number(response.main.humidity);
-        const disgusting = (weatherCode > 500 && weatherCode < 800 || temp_low < 30 || temp_high > 95 || humidity > 75);
+        const { temp, temp_min, temp_max, humidity } = response.main;
+        const temp_curr = temp.toFixed(0);
+        const weatherCode = Number(response.weather[0].id);
+        const disgusting = (weatherCode > 500 && weatherCode < 800 || temp_min < 30 || temp_max > 95 || humidity > 75);
 
         let description = response.weather[0].description;
         description = description.charAt(0).toUpperCase() + description.slice(1);
@@ -46,31 +40,13 @@ function loadURL(url) {
     window.location = url;
 }
 
-function timeString() {
-    let today = new Date();
-    let h = today.getHours();
-    //america
-    if (h >= 13) h -= 12;
-    else if (h < 1) h += 12;
-
-    let m = checkTime(today.getMinutes());
-    let s = checkTime(today.getSeconds());
-
-    return `${h}:${m}:${s}`;
-}
+const timeString = () => dayjs().format('hh:mm:ss A')
 
 function time() {
     print(timeString());
 }
 
-function checkTime(i) {
-    // add zero in front of numbers < 10
-    return i < 10 ? i = '0' + i : i;
-}
-
-function dateString() {
-    return dayjs().format('ddd MMM DD, YYYY')
-}
+const dateString = () => dayjs().format('ddd MMM DD, YYYY')
 
 function date() {
     print(dateString());
