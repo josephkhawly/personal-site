@@ -21,7 +21,15 @@ time, mark, audio, video {
 }
 
 :root {
-	--color-bg: #151515;
+	--color-bg: #100D23;
+	/* prompt and input */
+	--color-text-primary: #00FF9C; 
+	--color-text-secondary: #c592ff;
+	--color-output: #c592ff;
+	--color-prompt: #00FF9C; 
+	--color-input: #00FF9C;
+	--color-link: #dddddd;
+	--color-link-border: #d0d0d0;
 }
 
 
@@ -35,13 +43,13 @@ body {
 }
 
 a {
-	color: #dddddd;
+	color: var(--color-link);
 	text-decoration: none;
-	border-bottom: 1px solid #d0d0d0;
+	border-bottom: 1px solid var(--color-link-border);
 }
 
-pre, #prompt {
-    color: #adadad;
+#prompt {
+    color: var(--color-prompt);
 }
 
 ::selection {
@@ -52,10 +60,11 @@ pre, #prompt {
 pre {
     margin: 0;
     outline: none;
+	color: var(--color-input);
 }
 
 .output {
-    color: #828282;
+    color: var(--color-output);
 }
 
 #terminal {
@@ -64,7 +73,7 @@ pre {
 	overflow-x: auto;
 	top: -2ex;
 	background-color: var(--color-bg);
-	color: #adadad;
+	color: var(--color-text-primary);
 	width: 100%;
 	min-height: 100%;
 	max-height: 100%;
@@ -99,7 +108,7 @@ pre {
 #clock, #date {
 	float: right;
 	font-family: monospace;
-	color: gray;
+	color: var(--color-text-secondary);
 	margin-left: 1em;
 }
 
@@ -111,7 +120,7 @@ pre {
 /* ==== editor css ======= */
 #editArea {
 	background-color: rgba(1, 1, 1, .2);
-	color: #adadad;
+	color: var(--color-text-primary);
 	outline: none;
 	resize: none;
 	border: none;
