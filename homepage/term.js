@@ -160,8 +160,13 @@ const terminalFunctions = [
     'machine',
     're',
     'render',
-    'search'
+    'search',
+    'local',
 ];
+
+function local(port) {
+    window.location.href = `http://localhost:${port}000`
+}
 
 function clear(input) {
     var data =
