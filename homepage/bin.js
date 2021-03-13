@@ -19,9 +19,9 @@ function weather() {
     const apiKey = '3cebe33a9c82f08978b6486c638bb249';
     const json_url = `http://api.openweathermap.org/data/2.5/weather?q=boulder&units=imperial&appid=${apiKey}`;
 
-    $.when(
-        $.getJSON(json_url)
-    ).done(function (response) {
+    fetch(json_url)
+    .then(response => response.json())
+    .then(response => {
         const city = response.name;
         const { temp, temp_min, temp_max, humidity } = response.main;
         const temp_curr = temp.toFixed(0);
@@ -32,7 +32,7 @@ function weather() {
         description = description.charAt(0).toUpperCase() + description.slice(1);
         let weatherString = `It\'s ${temp_curr}&deg; in ${city}. ${description}. ${disgusting ? 'Disgusting.' : 'Not bad.'}`;
         print(weatherString);
-    });
+    })
 }
 
 function loadURL(url) {

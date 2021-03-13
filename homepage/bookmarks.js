@@ -16,27 +16,7 @@ const bookmarks = [
     ['amazon', 'https://amazon.com/'],
     ['amazon-jp', 'https://amazon.co.jp/'],
     ['trello', 'https://trello.com/'],
-];
-
-const media = [
-    ['yt', 'https://youtube.com/feed/subscriptions'],
-    ['netflix', 'https://netflix.com/'],
-    ['plex', 'https://app.plex.tv'],
-    ['music', 'https://play.google.com/music/listen?hl=en&u=0#/wmp'],
-];
-
-const tech = [
-    ['github', 'http://github.com/'],
-    ['speedtest', 'http://speedtest.net/'],
-    ['leetcode', 'https://leetcode.com/'],
-    ['mdn', 'https://developer.mozilla.org/en-US/'],
-];
-
-const social = [
-    ['twitter', 'https://twitter.com/'],
-    ['linkedin', 'https://linkedin.com/in/josephkhawly'],
-    ['groupme', 'https://app.groupme.com/'],
-];
+]
 
 // new model for adding bookmarks
 const b = {
@@ -69,5 +49,5 @@ const b = {
     'social': {
         'twitter': 'https://twitter.com/',
         'linkedin': 'https://linkedin.com/in/josephkhawly',
-    }
-};
+    },
+}

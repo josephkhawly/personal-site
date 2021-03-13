@@ -9,13 +9,13 @@ $(document).ready(function () {
     init();
 });
 
-var userName;
-var userMachine;
+const getName = () => localStorage.getItem('userName') || 'guest'
+const getMachine = () => localStorage.getItem('userMachine') || 'start'
 
-function getName() {
-    return !localStorage.getItem('userName') ? 'guest' :
-        localStorage.getItem('userName');
-}
+// name@machine:$
+const getPromptString = () => `${getName()}@${getMachine()}:$&nbsp;`
+const prompt = () => document.getElementById('prompt').innerHTML = getPromptString()
+
 
 function setName(name) {
     if (name == '') {
@@ -23,15 +23,10 @@ function setName(name) {
         return;
     }
     localStorage.setItem('userName', name);
-    userName = name;
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;';
-    print('Set userName to ' + userName + '.');
+    prompt()
+    print(`Set userName to ${name}.`)
 }
 
-function getMachine() {
-    return !localStorage.getItem('userMachine') ? 'start' :
-        localStorage.getItem('userMachine');
-}
 
 function setMachine(str) {
     if (str == '') {
@@ -39,9 +34,8 @@ function setMachine(str) {
         return;
     }
     localStorage.setItem('userMachine', str);
-    userMachine = str;
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;';
-    print('Set userMachine to ' + userMachine + '.');
+    prompt()
+    print(`Set userMachine to ${str}.`)
 }
 
 function init() {
@@ -78,10 +72,9 @@ function init() {
             }
         }
     });
-    getName();
-    getMachine();
-    document.getElementById('prompt').innerHTML = getName() + '@' + getMachine() + ':$&nbsp;';
-    $('#input').focus();
+
+    prompt()
+    $('#input').focus()
 }
 
 function handle(text) {
@@ -118,7 +111,7 @@ function handle(text) {
 }
 
 function appendLastInput(text) {
-    var inputBlobPre = '<p class="prompt">' + getName() + '@' + getMachine() + ':$&nbsp;</p><pre class="input-old">';
+    var inputBlobPre = '<p class="prompt">' + getPromptString() + '</p><pre class="input-old">';
     var inputBlobSuf = '</pre></br>';
     $(inputBlobPre + text + inputBlobSuf).insertBefore('#prompt');
 }
@@ -226,24 +219,7 @@ function help() {
 }
 
 function ls(input) {
-    //horrible. converts input to a string by adding an empty string.
-    input += '';
-
-    // use a regular expression to find flag and extract letter
-    let flag = input.match(/-[a-zA-Z]/g)[0];
-
-    // if it matches first letter of a category, print for that category
-    if (flag != null) {
-        Object.keys(b).forEach(e => {
-            if (flag[1] === e[0]) {
-                fancyRender(e, 'lightgray');
-                print(Object.keys(b[e]).join('\n'));
-            }
-        });
-        return;
-    }
-
-    help();
+    help()
 }
 
 function echo(args) {
