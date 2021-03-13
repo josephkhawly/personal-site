@@ -164,8 +164,26 @@ const terminalFunctions = [
     'local',
 ];
 
-function local(port) {
-    window.location.href = `http://localhost:${port}000`
+function local(args) {
+    if (args.length === 0) {
+        print('usage: local [port] [flag]');
+        return;
+    }
+
+    const port = args[0]
+    let url = `http://localhost:${port}000`
+    if (args.length === 1) {
+        print(url);
+        window.location.href = url
+    }
+
+    if (args.length == 2) {
+        const flag = args[1]
+        if (flag === '-a') url += '/admin'
+        else if (flag === '-p') url += '/api'
+
+        window.location.href = url
+    }
 }
 
 function clear(input) {
@@ -197,25 +215,26 @@ function listCommands(arr) {
 
 function help() {
     //add some kind of help for various functions (like rendering)
-    fancyRender('terminal', 'lightgray');
+    let renderColor = '#00FF9C';
+    fancyRender('terminal', renderColor);
     listCommands(terminalFunctions);
 
     // show bookmark commands
     var items = Object.keys(b);
     for (let i of items) {
-        fancyRender(i, 'lightgray');
+        fancyRender(i, renderColor);
         let k = Object.keys(b[i]);
         print(`> ${k.join(' > ')}`);
     }
 
     // print("\n");
 
-    fancyRender('i/o', 'lightgray');
+    fancyRender('i/o', renderColor);
     listCommands(fileFunctions);
 
     var printStr = '';
     if (!$.isEmptyObject(files)) {
-        fancyRender('files', 'lightgray');
+        fancyRender('files', renderColor);
         for (var prop in files)
             printStr += '> ' + prop + ' ';
 
@@ -341,19 +360,16 @@ function searchString(query) {
     var modifier = query.substr(query.length - 2);
     query = query.slice(0, query.length - 3); //remove " -x"
     switch (modifier) {
-        case '-a':
+        case '-z':
             window.location =
                 'http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=' +
                 query.replace(' ', '+');
             return true;
         case '-y':
-            window.location = 'https://www.youtube.com/results?search_query=' + query.replace(' ', '+');
+            window.location = `https://www.youtube.com/results?search_query=${query.replace(' ', '+')}`;
             return true;
         case '-w':
-            window.location = 'https://en.wikipedia.org/w/index.php?search=' + query.replace(' ', '%20');
-            return true;
-        case '-m':
-            window.location = 'http://www.wolframalpha.com/input/?i=' + query.replace('+', '%2B');
+            window.location = `https://en.wikipedia.org/w/index.php?search=${query.replace(' ', '%20')}`;
             return true;
     }
     return false;
