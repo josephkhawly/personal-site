@@ -43,7 +43,7 @@ const b = {
     },
 
     'work': {
-
+        'hbg': 'https://hbg.org',
     },
 
     'social': {

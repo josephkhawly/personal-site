@@ -16,27 +16,18 @@ const getMachine = () => localStorage.getItem('userMachine') || 'start'
 const getPromptString = () => `${getName()}@${getMachine()}:$&nbsp;`
 const prompt = () => document.getElementById('prompt').innerHTML = getPromptString()
 
-
-function setName(name) {
-    if (name == '') {
-        print('usage: name [newname]');
-        return;
+function setProperty(key, value) {
+    if (value == '') {
+        print('usage: name [newname]')
+        return
     }
-    localStorage.setItem('userName', name);
+    localStorage.setItem(key, value)
     prompt()
-    print(`Set userName to ${name}.`)
+    print(`Set ${key} to ${value}.`)
 }
 
-
-function setMachine(str) {
-    if (str == '') {
-        print('usage: machine [newname]');
-        return;
-    }
-    localStorage.setItem('userMachine', str);
-    prompt()
-    print(`Set userMachine to ${str}.`)
-}
+const setName = (name) => setProperty('userName', name)
+const setMachine = (str) => setProperty('userMachine', str)
 
 function init() {
     input = document.getElementById('input');
@@ -162,28 +153,22 @@ const terminalFunctions = [
     'render',
     'search',
     'local',
-];
+]
 
 function local(args) {
     if (args.length === 0) {
-        print('usage: local [port] [flag]');
-        return;
+        print('usage: local [port] [flag]')
+        return
     }
 
-    const port = args[0]
+    const [port, flag] = args
     let url = `http://localhost:${port}000`
-    if (args.length === 1) {
-        print(url);
-        window.location.href = url
-    }
 
-    if (args.length == 2) {
-        const flag = args[1]
-        if (flag === '-a') url += '/admin'
-        else if (flag === '-p') url += '/api'
+    if (flag === '-a') url += '/admin'
+    else if (flag === '-p') url += '/api'
 
-        window.location.href = url
-    }
+    print(url)
+    window.location.href = url
 }
 
 function clear(input) {

@@ -8,6 +8,11 @@
     src: url("fonts/SF-UI-Display-Thin.otf") format("opentype");
 }
 
+:root {
+    --color-btn: red;
+    --color-btn-text: red;
+}
+
 body {
     background-color: #343434;
 }
@@ -67,45 +72,38 @@ h1 {
     font-weight: 200;
     font-size: 20px;
     font-family: "SF-UI-Text", sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+
+    border: 1px solid var(--color-btn);
+    color: var(--color-btn-text);
 }
 
-.btn.email_btn {
-    border: 1px solid rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
+.btn.email {
+    border: 1px solid var(--color-btn);
+    color: var(--color-btn-text);
 }
 
-.btn.email_btn:hover {
+.btn.email:hover {
     color: white;
-    background-color: rgb(255, 0, 0);
+    background-color: red;
 }
 
-.btn.linkedin_btn {
+.btn.linkedin {
     border: 1px solid #4da4c3;
     color: #4da4c3;
 }
 
-.btn.linkedin_btn:hover {
+.btn.linkedin:hover {
     color: white;
     background-color: #4da4c3;
 }
 
-.btn.github_btn {
+.btn.github {
     border: 1px solid #8b59a2;
     color: #8b59a2;
 }
 
-.btn.github_btn:hover {
+.btn.github:hover {
     color: white;
     background-color: #8b59a2;
-}
-
-.btn.medium_btn {
-    border: 1px solid #3aa33a;
-    color: #3aa33a;
-}
-
-.btn.medium_btn:hover {
-    color: white;
-    background-color: #3aa33a;
 }
