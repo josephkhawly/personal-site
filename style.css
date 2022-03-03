@@ -1,109 +1,134 @@
-@font-face {
-    font-family: SF-UI-Display;
-    src: url("fonts/SF-UI-Display-Ultralight.otf") format("opentype");
-}
-
-@font-face {
-    font-family: SF-UI-Text;
-    src: url("fonts/SF-UI-Display-Thin.otf") format("opentype");
+/*css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 :root {
-    --color-btn: red;
-    --color-btn-text: red;
+	--color-bg: #100D23;
+	/* prompt and input */
+	--color-text-primary: #00FF9C; 
+	--color-text-secondary: #c592ff;
+	--color-output: #c592ff;
+	--color-prompt: #00FF9C; 
+	--color-input: #00FF9C;
+	--color-link: #dddddd;
+	--color-link-border: #d0d0d0;
 }
+
 
 body {
-    background-color: #343434;
-}
-
-img {
-    border-radius: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 260px;
-    width: 260px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-size: 11pt;
+	background-color: var(--color-bg);
 }
 
 a {
-    text-decoration: none;
+	color: var(--color-link);
+	text-decoration: none;
+	border-bottom: 1px solid var(--color-link-border);
 }
 
-a:link {
-    color: #a7f8ec;
+#prompt {
+    color: var(--color-prompt);
 }
 
-a:visited {
-    color: #7dbab1;
+::selection {
+	color: var(--color-bg);
+    background: var(--color-input);
 }
 
-a:hover {
-    color: #bde0f8;
+pre {
+    margin: 0;
+    outline: none;
+	color: var(--color-input);
 }
 
-h1 {
-    font-family: "SF-UI-Display", sans-serif;
-    color: white;
-    text-align: center;
-    margin-bottom: 0px;
-    font-size: 50px;
-    font-weight: 100;
+.output {
+    color: var(--color-output);
 }
 
-.container {
-    font-family: "SF-UI-Text", sans-serif;
-    font-weight: 200;
-    color: white;
-    position: relative;
-    width: 680px;
-    margin: 0 auto;
-    padding: 30px 0 80px;
-    font-size: 20px;
+#terminal {
+	display: block;
+	overflow-y: auto;
+	overflow-x: auto;
+	top: -2ex;
+	background-color: var(--color-bg);
+	color: var(--color-text-primary);
+	width: 100%;
+	min-height: 100%;
+	max-height: 100%;
 }
 
-.btn {
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 10px 20px;
-    background-color: transparent;
-    text-shadow: none;
-    font-weight: 200;
-    font-size: 20px;
-    font-family: "SF-UI-Text", sans-serif;
-    transition: all 0.3s ease;
-
-    border: 1px solid var(--color-btn);
-    color: var(--color-btn-text);
+.prompt {
+    font-family: monospace;
+    display: inline;
+	white-space: nowrap;
 }
 
-.btn.email {
-    border: 1px solid var(--color-btn);
-    color: var(--color-btn-text);
+#input, .input-old {
+	display: inline;
 }
 
-.btn.email:hover {
-    color: white;
-    background-color: red;
+#terminal-container {
+	padding: 12pt;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 80%;
+	max-height: 80%;
+	background-color: var(--color-bg);
+	opacity: .9 ;
+	border-radius: 1px;
+	/*center it vertically*/
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
-.btn.linkedin {
-    border: 1px solid #4da4c3;
-    color: #4da4c3;
+#clock, #date {
+	float: right;
+	font-family: monospace;
+	color: var(--color-text-secondary);
+	margin-left: 1em;
 }
 
-.btn.linkedin:hover {
-    color: white;
-    background-color: #4da4c3;
+#input>span {
+	max-width: 100%;
 }
 
-.btn.github {
-    border: 1px solid #8b59a2;
-    color: #8b59a2;
+
+/* ==== editor css ======= */
+#editArea {
+	background-color: rgba(1, 1, 1, .2);
+	color: var(--color-text-primary);
+	outline: none;
+	resize: none;
+	border: none;
+	font-size: 11pt;
+	font-family: monospace;
 }
 
-.btn.github:hover {
-    color: white;
-    background-color: #8b59a2;
+#filename {
+	float: left;
+	font-family: monospace;
+	color: gray;
 }

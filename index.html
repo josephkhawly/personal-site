@@ -1,21 +1,30 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-    
-    <title>Joseph Khawly</title>
+
 <head>
-    <meta name="theme-color" content="#45dbbe">
-    <link href='http://fonts.googleapis.com/css?family=Inconsolata|Roboto:400,100,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="scrollbar.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://unpkg.com/dayjs"></script>
+	<title>~</title>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Joseph Khawly</h1>
-        <p>I'm a web developer currently doing web developer things at <a href="https://mouthwateringmedia.com/" target="_blank">Mouth Watering Media</a>.</p>
-        
-        <a href="mailto:joseph.khawly@gmail.com" target="_blank" class="btn email">email</a>
-        <a href="https://github.com/josephkhawly" target="_blank" class="btn github">GitHub</a>
-    </div>
+	<div id="terminal-container">
+		<div id="terminal">
+			<p id="prompt" class="prompt"></p>
+			<pre id="input" contenteditable="true" autofocus="true" spellcheck="false"></pre>
+		</div>
+		<span id="clock"></span>
+		<span id="date"></span>
+		<span id="filename"></span>
+	</div>
+	<script src="js/term.js"></script>
+	<script src="js/bin.js"></script>
+	<script src="js/edit.js"></script>
+	<script src="js/time.js"></script>
+	<script src="js/hook.js"></script>
+	<script src="js/bookmarks.js"></script>
 </body>
 
 </html>

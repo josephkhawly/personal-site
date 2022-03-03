@@ -42,13 +42,11 @@ function init() {
             //up arrow
             document.getElementById('input').innerHTML = lastInputs[inputIndex];
 
-            inputIndex < lastInputs.length - 1 ? inputIndex++ :
-                true;
+            inputIndex < lastInputs.length - 1 ? inputIndex++ : true;
         } else if (key === 40) {
             //down arrow
 
-            inputIndex > 0 ? inputIndex-- :
-                true;
+            inputIndex > 0 ? inputIndex-- : true;
             if (inputIndex > 0) {
                 inputIndex--;
                 document.getElementById('input').innerHTML = lastInputs[inputIndex];
@@ -102,9 +100,8 @@ function handle(text) {
 }
 
 function appendLastInput(text) {
-    var inputBlobPre = '<p class="prompt">' + getPromptString() + '</p><pre class="input-old">';
-    var inputBlobSuf = '</pre></br>';
-    $(inputBlobPre + text + inputBlobSuf).insertBefore('#prompt');
+    var inputBlobPre = `<p class="prompt">${getPromptString()}</p><pre class="input-old">${text}</pre></br>`;
+    $(inputBlobPre).insertBefore('#prompt');
 }
 
 function print(text) {
@@ -116,10 +113,9 @@ function print(text) {
         finalText += args[a] + ' ';
     }
 
-    var pre = '<pre class="output">';
-    var suf = '</pre>';
+    var pre = `<pre class="output">${finalText}</pre>`;
 
-    $(pre + finalText + suf).insertBefore('#prompt');
+    $(pre).insertBefore('#prompt');
 }
 
 //for fancy rendering
@@ -131,12 +127,8 @@ function fancyRender(text, color, size) {
     if (size == undefined) {
         size = '11';
     }
-    pre += 'color:' + color + '; ';
-    pre += 'font-size:' + size + 'pt;"';
-
-    pre += '>';
-    var suf = '</pre>';
-    $(pre + text + suf).insertBefore('#prompt');
+    pre += `color: ${color}; font-size:${size}pt;">${text}</pre>`;
+    $(pre).insertBefore('#prompt');
 }
 
 //====================  TERMINAL FUNCTIONS  ========================
@@ -267,12 +259,11 @@ function render(args) {
 }
 
 function search() {
-    print('Usage: [query] -x');
-    print('x is a switch for: ');
-    print('a:   amazon');
-    print('m:   wolfram alpha');
-    print('w:   wikipedia');
-    print('y:   youtube');
+    print('Usage: [query] -x')
+    print('x is a switch for: ')
+    print('a:   amazon')
+    print('w:   wikipedia')
+    print('y:   youtube')
 }
 
 //====================  HISTORY  ===================================
