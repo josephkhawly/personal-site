@@ -13,13 +13,6 @@ function hook(str, args) {
         url = 'https://www.reddit.com' + str;
     }
 
-    //check for a 4chan board
-    if (str[0] === '/' && (str[str.length - 1] === '/' || str.length < 5)) {
-        //then it's not guaranteed to be a 4chan board, but let's try it anyway
-        //everything but the slash at the beginning
-        url = 'https://boards.4chan.org/' + str.substr(1);
-    }
-
     if (hookCommands.indexOf(str) > -1 || fileFunctions.indexOf(str) > -1) {
         //call it as a function
         //args are an array

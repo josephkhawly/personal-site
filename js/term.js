@@ -191,11 +191,17 @@ function listCommands(arr) {
 }
 
 function help() {
+    print('You found my terminal!')
+    print("This project serves as my browser's homepage. The bookmarks are 'commands' that you can type in the terminal.")
+    print('Type \'ls\' to see all the commands.')
+}
+
+function ls(input) {
     //add some kind of help for various functions (like rendering)
     let renderColor = '#00FF9C';
     fancyRender('terminal', renderColor);
     listCommands(terminalFunctions);
-
+    
     // show bookmark commands
     var items = Object.keys(b);
     for (let i of items) {
@@ -203,24 +209,20 @@ function help() {
         let k = Object.keys(b[i]);
         print(`> ${k.join(' > ')}`);
     }
-
+    
     // print("\n");
-
+    
     fancyRender('i/o', renderColor);
     listCommands(fileFunctions);
-
+    
     var printStr = '';
     if (!$.isEmptyObject(files)) {
         fancyRender('files', renderColor);
         for (var prop in files)
             printStr += '> ' + prop + ' ';
-
+    
         print(printStr);
     }
-}
-
-function ls(input) {
-    help()
 }
 
 function echo(args) {

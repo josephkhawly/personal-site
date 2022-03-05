@@ -3,6 +3,7 @@
 //initializing commands
 $(document).ready(function () {
     weather();
+    print("Type 'help' to learn more.");
 });
 
 //==================== CHALLENGE COMMANDS ==========================
@@ -54,8 +55,4 @@ function date() {
 
 function reddit(s) {
     print('Usage: /r/[subreddit] or /u/[user]');
-}
-
-function chan(s) {
-    print('Usage: /[board] or /[board]/');
 }
